@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PARQUEOModelStoreContainer" CdmEntityContainer="PARQUEOEntities">
+    <EntitySetMapping Name="CLIENTES">
+      <EntityTypeMapping TypeName="PARQUEOModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTES">
+          <ScalarProperty Name="IDcliente" ColumnName="IDcliente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIQUETE_DETALLE">
+      <EntityTypeMapping TypeName="PARQUEOModel.TIQUETE_DETALLE">
+        <MappingFragment StoreEntitySet="TIQUETE_DETALLE">
+          <ScalarProperty Name="IDtiquete" ColumnName="IDtiquete" />
+          <ScalarProperty Name="NumeroPlaca" ColumnName="NumeroPlaca" />
+          <ScalarProperty Name="IDcliente" ColumnName="IDcliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIQUETES_ENCABEZADO">
+      <EntityTypeMapping TypeName="PARQUEOModel.TIQUETES_ENCABEZADO">
+        <MappingFragment StoreEntitySet="TIQUETES_ENCABEZADO">
+          <ScalarProperty Name="IDtiquete" ColumnName="IDtiquete" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEHICULOS">
+      <EntityTypeMapping TypeName="PARQUEOModel.VEHICULO">
+        <MappingFragment StoreEntitySet="VEHICULOS">
+          <ScalarProperty Name="NumeroPlaca" ColumnName="NumeroPlaca" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GenereaTiquete" FunctionName="PARQUEOModel.Store.GenereaTiquete" />
+  </EntityContainerMapping>
+</Mapping>

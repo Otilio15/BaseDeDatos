@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PARQUEOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="IDcliente" />
+          </Key>
+          <Property Name="IDcliente" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Cedula" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIQUETE_DETALLE">
+          <Key>
+            <PropertyRef Name="IDtiquete" />
+          </Key>
+          <Property Name="IDtiquete" Type="int" Nullable="false" />
+          <Property Name="NumeroPlaca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IDcliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIQUETES_ENCABEZADO">
+          <Key>
+            <PropertyRef Name="IDtiquete" />
+          </Key>
+          <Property Name="IDtiquete" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="FechaFinalizacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VEHICULOS">
+          <Key>
+            <PropertyRef Name="NumeroPlaca" />
+          </Key>
+          <Property Name="NumeroPlaca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Modelo" Type="int" />
+        </EntityType>
+        <Association Name="clienteID">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="IDcliente" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="IDcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TiqueteId">
+          <End Role="TIQUETES_ENCABEZADO" Type="Self.TIQUETES_ENCABEZADO" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TIQUETES_ENCABEZADO">
+              <PropertyRef Name="IDtiquete" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="IDtiquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehiculosID">
+          <End Role="VEHICULOS" Type="Self.VEHICULOS" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICULOS">
+              <PropertyRef Name="NumeroPlaca" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="NumeroPlaca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GenereaTiquete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USUARIO" Type="varchar" Mode="In" />
+          <Parameter Name="IDcliente" Type="int" Mode="In" />
+          <Parameter Name="NumeroPlaca" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="PARQUEOModelStoreContainer">
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIQUETE_DETALLE" EntityType="Self.TIQUETE_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIQUETES_ENCABEZADO" EntityType="Self.TIQUETES_ENCABEZADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEHICULOS" EntityType="Self.VEHICULOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="clienteID" Association="Self.clienteID">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="TiqueteId" Association="Self.TiqueteId">
+            <End Role="TIQUETES_ENCABEZADO" EntitySet="TIQUETES_ENCABEZADO" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="vehiculosID" Association="Self.vehiculosID">
+            <End Role="VEHICULOS" EntitySet="VEHICULOS" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PARQUEOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IDcliente" />
+          </Key>
+          <Property Name="IDcliente" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TIQUETE_DETALLE" Relationship="Self.clienteID" FromRole="CLIENTES" ToRole="TIQUETE_DETALLE" />
+        </EntityType>
+        <EntityType Name="TIQUETE_DETALLE">
+          <Key>
+            <PropertyRef Name="IDtiquete" />
+          </Key>
+          <Property Name="IDtiquete" Type="Int32" Nullable="false" />
+          <Property Name="NumeroPlaca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDcliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.clienteID" FromRole="TIQUETE_DETALLE" ToRole="CLIENTES" />
+          <NavigationProperty Name="TIQUETES_ENCABEZADO" Relationship="Self.TiqueteId" FromRole="TIQUETE_DETALLE" ToRole="TIQUETES_ENCABEZADO" />
+          <NavigationProperty Name="VEHICULO" Relationship="Self.vehiculosID" FromRole="TIQUETE_DETALLE" ToRole="VEHICULOS" />
+        </EntityType>
+        <EntityType Name="TIQUETES_ENCABEZADO">
+          <Key>
+            <PropertyRef Name="IDtiquete" />
+          </Key>
+          <Property Name="IDtiquete" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaFinalizacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TIQUETE_DETALLE" Relationship="Self.TiqueteId" FromRole="TIQUETES_ENCABEZADO" ToRole="TIQUETE_DETALLE" />
+        </EntityType>
+        <EntityType Name="VEHICULO">
+          <Key>
+            <PropertyRef Name="NumeroPlaca" />
+          </Key>
+          <Property Name="NumeroPlaca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modelo" Type="Int32" />
+          <NavigationProperty Name="TIQUETE_DETALLE" Relationship="Self.vehiculosID" FromRole="VEHICULOS" ToRole="TIQUETE_DETALLE" />
+        </EntityType>
+        <Association Name="clienteID">
+          <End Role="CLIENTES" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="IDcliente" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="IDcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TiqueteId">
+          <End Role="TIQUETES_ENCABEZADO" Type="Self.TIQUETES_ENCABEZADO" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TIQUETES_ENCABEZADO">
+              <PropertyRef Name="IDtiquete" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="IDtiquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehiculosID">
+          <End Role="VEHICULOS" Type="Self.VEHICULO" Multiplicity="1" />
+          <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICULOS">
+              <PropertyRef Name="NumeroPlaca" />
+            </Principal>
+            <Dependent Role="TIQUETE_DETALLE">
+              <PropertyRef Name="NumeroPlaca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PARQUEOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTE" />
+          <EntitySet Name="TIQUETE_DETALLE" EntityType="Self.TIQUETE_DETALLE" />
+          <EntitySet Name="TIQUETES_ENCABEZADO" EntityType="Self.TIQUETES_ENCABEZADO" />
+          <EntitySet Name="VEHICULOS" EntityType="Self.VEHICULO" />
+          <AssociationSet Name="clienteID" Association="Self.clienteID">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="TiqueteId" Association="Self.TiqueteId">
+            <End Role="TIQUETES_ENCABEZADO" EntitySet="TIQUETES_ENCABEZADO" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="vehiculosID" Association="Self.vehiculosID">
+            <End Role="VEHICULOS" EntitySet="VEHICULOS" />
+            <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+          </AssociationSet>
+          <FunctionImport Name="GenereaTiquete">
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="IDcliente" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroPlaca" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PARQUEOModelStoreContainer" CdmEntityContainer="PARQUEOEntities">
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="PARQUEOModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="IDcliente" ColumnName="IDcliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIQUETE_DETALLE">
+            <EntityTypeMapping TypeName="PARQUEOModel.TIQUETE_DETALLE">
+              <MappingFragment StoreEntitySet="TIQUETE_DETALLE">
+                <ScalarProperty Name="IDtiquete" ColumnName="IDtiquete" />
+                <ScalarProperty Name="NumeroPlaca" ColumnName="NumeroPlaca" />
+                <ScalarProperty Name="IDcliente" ColumnName="IDcliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIQUETES_ENCABEZADO">
+            <EntityTypeMapping TypeName="PARQUEOModel.TIQUETES_ENCABEZADO">
+              <MappingFragment StoreEntitySet="TIQUETES_ENCABEZADO">
+                <ScalarProperty Name="IDtiquete" ColumnName="IDtiquete" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEHICULOS">
+            <EntityTypeMapping TypeName="PARQUEOModel.VEHICULO">
+              <MappingFragment StoreEntitySet="VEHICULOS">
+                <ScalarProperty Name="NumeroPlaca" ColumnName="NumeroPlaca" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GenereaTiquete" FunctionName="PARQUEOModel.Store.GenereaTiquete" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

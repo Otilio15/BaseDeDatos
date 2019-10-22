@@ -1,0 +1,11 @@
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\Modelo.dll.config
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\Modelo.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\EntityFramework.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\EntityFramework.xml
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\obj\Debug\Modelo.csprojAssemblyReference.cache
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\obj\Debug\Modelo.csproj.CopyComplete
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\obj\Debug\Modelo.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Modelo\obj\Debug\Modelo.pdb

@@ -1,0 +1,14 @@
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Controlador.dll.config
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Controlador.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Controlador.pdb
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\EntityFramework.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Modelo.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Modelo.pdb
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\Modelo.dll.config
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\EntityFramework.xml
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\obj\Debug\Controlador.csprojAssemblyReference.cache
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\obj\Debug\Controlador.csproj.CopyComplete
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\obj\Debug\Controlador.dll
+C:\Users\Oscar\OneDrive\c#\Parqueo\Parqueo\Controlador\obj\Debug\Controlador.pdb

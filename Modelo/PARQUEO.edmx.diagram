@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04c3c3bb5eed44c0a29ac1d4b1b5fbc9" Name="Diagram1">
+        <EntityTypeShape EntityType="PARQUEOModel.CLIENTE" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PARQUEOModel.TIQUETE_DETALLE" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PARQUEOModel.TIQUETES_ENCABEZADO" Width="1.5" PointX="3.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PARQUEOModel.VEHICULO" Width="1.5" PointX="7.375" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="PARQUEOModel.clienteID" ManuallyRouted="false" />
+        <AssociationConnector Association="PARQUEOModel.TiqueteId" ManuallyRouted="false" />
+        <AssociationConnector Association="PARQUEOModel.vehiculosID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

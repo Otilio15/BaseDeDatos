@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PARQUEOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="IDcliente" />
+    </Key>
+    <Property Name="IDcliente" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Cedula" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIQUETE_DETALLE">
+    <Key>
+      <PropertyRef Name="IDtiquete" />
+    </Key>
+    <Property Name="IDtiquete" Type="int" Nullable="false" />
+    <Property Name="NumeroPlaca" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IDcliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIQUETES_ENCABEZADO">
+    <Key>
+      <PropertyRef Name="IDtiquete" />
+    </Key>
+    <Property Name="IDtiquete" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="FechaFinalizacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VEHICULOS">
+    <Key>
+      <PropertyRef Name="NumeroPlaca" />
+    </Key>
+    <Property Name="NumeroPlaca" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Marca" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Modelo" Type="int" />
+  </EntityType>
+  <Association Name="clienteID">
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+    <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTES">
+        <PropertyRef Name="IDcliente" />
+      </Principal>
+      <Dependent Role="TIQUETE_DETALLE">
+        <PropertyRef Name="IDcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TiqueteId">
+    <End Role="TIQUETES_ENCABEZADO" Type="Self.TIQUETES_ENCABEZADO" Multiplicity="1" />
+    <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TIQUETES_ENCABEZADO">
+        <PropertyRef Name="IDtiquete" />
+      </Principal>
+      <Dependent Role="TIQUETE_DETALLE">
+        <PropertyRef Name="IDtiquete" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="vehiculosID">
+    <End Role="VEHICULOS" Type="Self.VEHICULOS" Multiplicity="1" />
+    <End Role="TIQUETE_DETALLE" Type="Self.TIQUETE_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEHICULOS">
+        <PropertyRef Name="NumeroPlaca" />
+      </Principal>
+      <Dependent Role="TIQUETE_DETALLE">
+        <PropertyRef Name="NumeroPlaca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GenereaTiquete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USUARIO" Type="varchar" Mode="In" />
+    <Parameter Name="IDcliente" Type="int" Mode="In" />
+    <Parameter Name="NumeroPlaca" Type="varchar" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="PARQUEOModelStoreContainer">
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIQUETE_DETALLE" EntityType="Self.TIQUETE_DETALLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIQUETES_ENCABEZADO" EntityType="Self.TIQUETES_ENCABEZADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VEHICULOS" EntityType="Self.VEHICULOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="clienteID" Association="Self.clienteID">
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+      <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="TiqueteId" Association="Self.TiqueteId">
+      <End Role="TIQUETES_ENCABEZADO" EntitySet="TIQUETES_ENCABEZADO" />
+      <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="vehiculosID" Association="Self.vehiculosID">
+      <End Role="VEHICULOS" EntitySet="VEHICULOS" />
+      <End Role="TIQUETE_DETALLE" EntitySet="TIQUETE_DETALLE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
